@@ -35,8 +35,10 @@ const titleClickHandler = function(event){
             correctArticle = idArticle;
         }
     }
-    /* [IN PROGRESS] add class 'active' to the correct article */
+    /* [DONE] add class 'active' to the correct article */
     console.log(correctArticle);
+    const showArticle = document.getElementById(correctArticle);
+    showArticle.classList.add('active'); 
   }
   
   const links = document.querySelectorAll('.titles a');
