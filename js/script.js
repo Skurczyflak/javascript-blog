@@ -13,7 +13,6 @@ const titleClickHandler = function(event){
     }
     /* [DONE] add class 'active' to the clicked link */
     const clickedElement = this;
-    console.log('clickedElement:', clickedElement);
     clickedElement.classList.add('active');
     /* [DONE] remove class 'active' from all articles */
     const activeArticles = document.querySelectorAll('.post.active');
@@ -23,40 +22,14 @@ const titleClickHandler = function(event){
     }
     /* [DONE] get 'href' attribute from the clicked link */
 
-    /* My method */
-    // const articleHref = clickedElement.getAttribute('href');
-    // console.log('articleName:', articleHref);
-
-    /* Module method */
     const articleSelector = clickedElement.getAttribute('href');
-    console.log(articleSelector);
 
     /* [DONE] find the correct article using the selector (value of 'href' attribute) */
 
-    /* My method */
-    // const listArticles = document.querySelectorAll('.post');
-    // console.log('list of articles:', listArticles);
-    // let correctArticle = 0;
-
-    // for(let article of listArticles){
-    //     const idArticle = article.getAttribute('id');
-    //     if(articleHref == '#'+idArticle){
-    //         correctArticle = idArticle;
-    //     }
-    // }
-
-    /* Module method */
     const targetArticle = document.querySelector(articleSelector);
-    console.log(targetArticle);
 
     /* [DONE] add class 'active' to the correct article */
 
-    /* My method */
-    // console.log(correctArticle);
-    // const showArticle = document.getElementById(correctArticle);
-    // showArticle.classList.add('active'); 
-
-    /* Module method */
     targetArticle.classList.add('active');
 
   }
@@ -68,22 +41,17 @@ const titleClickHandler = function(event){
     let html = '';
     /* Delate content of links in left column */
     const linkSelector = document.querySelector('.list.titles'); 
-    console.log(linkSelector);
     linkSelector.innerHTML = "";
     /* For every article element */
     const articlesSelector = document.querySelectorAll('.post');
-    console.log(articlesSelector);
 
     for(let Article of articlesSelector){
         /* Read 'id' and save it in 'const' */
         const idArticle = Article.getAttribute('id');
-        console.log(idArticle); 
         /* Find element 'title' and save it in 'const' */
-        const tittleArticle = Article.querySelector('.post-title').innerHTML;
-        console.log(tittleArticle);
+        const titleArticle = Article.querySelector('.post-title').innerHTML;
         /* Create html link and save it in 'const' */
-        const linkArticle = '<li><a href="#'+idArticle+'"><span>'+tittleArticle+'</span></a></li>';
-        console.log(linkArticle)
+        const linkArticle = '<li><a href="#'+idArticle+'"><span>'+titleArticle+'</span></a></li>';
         /* Put created link in list of links in left column */
         html += linkArticle;
     }
