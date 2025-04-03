@@ -65,6 +65,8 @@ const titleClickHandler = function(event){
 
   const generateTitleLinks = function(){
 
+    let html = '';
+
     /* Delate content of links in left column */
     const linkSelector = document.querySelector('.list.titles'); 
     console.log(linkSelector);
@@ -84,8 +86,9 @@ const titleClickHandler = function(event){
         const linkArticle = '<li><a href="#'+idArticle+'"><span>'+tittleArticle+'</span></a></li>';
         console.log(linkArticle)
         /* Put created link in list of links in left column */
-        linkSelector.innerHTML += linkArticle;
+        html += linkArticle;
     }
+    linkSelector.innerHTML += html;
   }
 
   generateTitleLinks();
