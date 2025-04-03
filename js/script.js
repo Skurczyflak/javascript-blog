@@ -64,9 +64,8 @@ const titleClickHandler = function(event){
   //Function GenerateTitleLinks
 
   const generateTitleLinks = function(){
-
+    /* Create html link and save it in 'const' */
     let html = '';
-
     /* Delate content of links in left column */
     const linkSelector = document.querySelector('.list.titles'); 
     console.log(linkSelector);
