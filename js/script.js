@@ -22,23 +22,43 @@ const titleClickHandler = function(event){
         activeArticle.classList.remove('active');
     }
     /* [DONE] get 'href' attribute from the clicked link */
-    const articleHref = clickedElement.getAttribute('href');
-    console.log('articleName:', articleHref);
-    /* [DONE] find the correct article using the selector (value of 'href' attribute) */
-    const listArticles = document.querySelectorAll('.post');
-    console.log('list of articles:', listArticles);
-    let correctArticle = 0;
 
-    for(let article of listArticles){
-        const idArticle = article.getAttribute('id');
-        if(articleHref === '#'+idArticle){
-            correctArticle = idArticle;
-        }
-    }
+    /* My method */
+    // const articleHref = clickedElement.getAttribute('href');
+    // console.log('articleName:', articleHref);
+
+    /* Module method */
+    const articleSelector = clickedElement.getAttribute('href');
+    console.log(articleSelector);
+
+    /* [DONE] find the correct article using the selector (value of 'href' attribute) */
+
+    /* My method */
+    // const listArticles = document.querySelectorAll('.post');
+    // console.log('list of articles:', listArticles);
+    // let correctArticle = 0;
+
+    // for(let article of listArticles){
+    //     const idArticle = article.getAttribute('id');
+    //     if(articleHref === '#'+idArticle){
+    //         correctArticle = idArticle;
+    //     }
+    // }
+
+    /* Module method */
+    const targetArticle = document.querySelector(articleSelector);
+    console.log(targetArticle);
+
     /* [DONE] add class 'active' to the correct article */
-    console.log(correctArticle);
-    const showArticle = document.getElementById(correctArticle);
-    showArticle.classList.add('active'); 
+
+    /* My method */
+    // console.log(correctArticle);
+    // const showArticle = document.getElementById(correctArticle);
+    // showArticle.classList.add('active'); 
+
+    /* Module method */
+    targetArticle.classList.add('active');
+
   }
   
   const links = document.querySelectorAll('.titles a');
