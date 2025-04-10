@@ -4,10 +4,12 @@ const optArticleSelector = '.post',
 optTitleSelector = '.post-title',
 optTitleListSelector = '.titles',
 optArticleTagsSelector = '.post-tags .list',
-optArticleTagsLinksSelector = '.post-tags .list a',
+optArticleTagsLinksSelector = '.list a[href^="#tag-"]',
 optArticleAuthorSelector = '.post .post-author',
 optArticleAuthorLinksSelector = '.post-author a',
-optTagsListSelector = '.tags.list';
+optTagsListSelector = '.tags.list',
+optCloudClassCount = 5,
+optCloudClassPrefix = 'tag-size-';
 
 //List of links
 
@@ -73,9 +75,28 @@ for(let link of links){
 
 generateTitleLinks();
 
+function calculateTagsParams(tags){
+  const minMax = {
+    max: 0,
+    min: 0
+  };
+  let toArray = Object.values(tags);
+  minMax.min = Math.min(...toArray);
+  minMax.max = Math.max(...toArray);
+  return minMax;
+}
+
+function calculateTagClass(count, params){
+  const normalizedCount = count - params.min;
+  const normalizedMax = params.max - params.min;
+  const percentage = normalizedCount / normalizedMax;
+  const classNumber = Math.floor( percentage * (optCloudClassCount - 1) + 1 );
+  return optCloudClassPrefix + classNumber;
+}
+
 function generateTags (){
-  /* [NEW] create a new variable allTags with an empty array */
-  let allTags = [];
+  /* [NEW] create a new variable allTags with an empty object */
+  let allTags = {};
   /* find all articles */
   const articlesSelector = document.querySelectorAll(optArticleSelector);
   /* START LOOP: for every article: */
@@ -95,9 +116,11 @@ function generateTags (){
       /* [NEW] check if this link is NOT already in allTags */
       html += linkTag;
       /* add generated code to html variable */
-      if(allTags.indexOf(linkTag) == -1){
+      if(!allTags[tag]){
         /* [NEW] add generated code to allTags array */
-        allTags.push(linkTag);
+        allTags[tag] = 1;
+      } else {
+        allTags[tag]++;
       }
     }
     /* END LOOP: for each tag */
@@ -109,9 +132,20 @@ function generateTags (){
     /* [NEW] find list of tags in right column */
     const tagList = document.querySelector(optTagsListSelector);
 
-    /* [NEW] add html from allTags to tagList */
-    tagList.innerHTML = allTags.join(' ');
-  }
+    /* [NEW] create variable for all links HTML code */
+    let allTagsHTML = '';
+    const tagsParams = calculateTagsParams(allTags);
+    /* [NEW] START LOOP: for each tag in allTags: */
+    for(let tag in allTags){
+    /* [NEW] generate code of a link and add it to allTagsHTML */
+    const linkTag = '<li><a class="'+calculateTagClass(allTags[tag], tagsParams)+'" href="#tag-'+tag+'">'+tag+'</a>';
+    allTagsHTML += linkTag + '</li>';
+    }
+    /* [NEW] END LOOP: for each tag in allTags: */
+
+    /*[NEW] add HTML from allTagsHTML to tagList */
+    tagList.innerHTML = allTagsHTML;
+    }
 }
 
 generateTags();
