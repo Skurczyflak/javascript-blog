@@ -37,11 +37,12 @@ body {
   text-transform: uppercase;
   font-family: $font-header;
   font-weight: 600;
+
   span {
     text-transform: none;
     font-weight: 400;
     color: $color-light;
-    filter:  brightness(20%);
+    filter: brightness(20%);
   }
 }
 
@@ -96,10 +97,22 @@ body {
   list-style-type: none;
   margin: 0;
   padding: 0;
+
   .active {
     font-size: 1.2rem;
     color: $color-three;
   }
+
+  li a{
+    text-decoration: none;
+    color: $color-one;
+    font-weight: bold;
+  }
+
+  li a:hover {
+    color: $color-three;
+  }
+
 }
 
 .list-horizontal {
@@ -108,36 +121,20 @@ body {
   }
 }
 
-.list {
-  li a{
-    text-decoration: none;
-    color:  $color-one;
-    font-weight: bold;
-  }
-  li a:hover {
-    color: $color-three;
-  }
-}
-
 .titles {
+  .active{
+    margin-left: 1rem;
+  }
 
   li{
     margin: 0.2rem;
     width: 6rem;
   }
-  
 
-} 
-.titles {
   li a{
     text-transform: capitalize;
   }
-}
 
-.titles {
-  .active{
-    margin-left: 1rem;
-  }
 }
 
 /* Authors */
@@ -152,9 +149,11 @@ body {
 
 .post {
   display: none;
+
   &.active {
     display: block;
   }
+
 }
 
 .post-author {
@@ -163,9 +162,11 @@ body {
 
 .post-tags {
   display: flex;
+
   p {
     margin: 0 10px 0 0;
   }
+
 }
 
 @media (max-width: 767px){
@@ -176,24 +177,23 @@ body {
   .sidebar-left {
     clip-path: polygon(20% 0%, 80% 0%, 100% 20%, 100% 100%, 0 100%, 0% 20%);
   }
-  
+
   .sidebar-right {
     clip-path: polygon(0 0, 100% 0, 100% 80%, 80% 100%, 20% 100%, 0% 80%);
   }
 
   .titles {
     text-align: center;
+
+    .active{
+      margin-left: 0;
+    }
+
     li{
       margin: 0.2rem;
       width: 6rem;
     }
+
   }
-    
-  .titles {
-    .active{
-      margin-left: 0;
-    }
-  }
-  
-  
+
 }
